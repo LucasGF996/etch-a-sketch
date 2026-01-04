@@ -1,4 +1,5 @@
 let container = document.getElementById("container");
+let resetBtn = document.querySelector(".reset");
 
 for (let i = 0; i < 16; i++) {
     let col = document.createElement("div");
@@ -16,8 +17,14 @@ let pixelsArr = Array.from(pixels);
 console.log(pixelsArr);
 
 for (const pixel of pixelsArr) {
-    pixel.addEventListener("mouseover", () => {
+    pixel.addEventListener("mousedown", () => {
         console.log(pixel);
         pixel.classList.replace("white","black");
     })
 }
+
+resetBtn.addEventListener("click", () => {
+    for (const pixel of pixelsArr) {
+        pixel.classList.replace("black", "white");
+    }
+})
