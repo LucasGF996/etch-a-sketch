@@ -1,5 +1,6 @@
 let container = document.getElementById("container");
 let resetBtn = document.querySelector(".reset");
+let maxColor = 360;
 
 for (let i = 0; i < 16; i++) {
     let col = document.createElement("div");
@@ -14,17 +15,23 @@ for (let i = 0; i < 16; i++) {
 
 let pixels = document.getElementsByClassName("white");
 let pixelsArr = Array.from(pixels);
-console.log(pixelsArr);
 
 for (const pixel of pixelsArr) {
-    pixel.addEventListener("mousedown", () => {
-        console.log(pixel);
-        pixel.classList.replace("white","black");
+    pixel.addEventListener("mouseover", () => {
+        let randomColorRed = Math.floor(Math.random() * maxColor);
+        let randomColorGreen = Math.floor(Math.random() * maxColor);
+        let randomColorBlue = Math.floor(Math.random() * maxColor);
+        let rgbColor = `${randomColorRed},${randomColorGreen},${randomColorBlue}`;
+
+        pixel.classList.remove("white");
+        pixel.style.backgroundColor = `rgb(${rgbColor})`;
+
     })
 }
 
 resetBtn.addEventListener("click", () => {
     for (const pixel of pixelsArr) {
-        pixel.classList.replace("black", "white");
+        pixel.classList.add("white");
+        pixel.style.backgroundColor = "white";
     }
 })
